@@ -1,0 +1,15 @@
+.detailsContainer{
+    display: flex;
+    flex-direction: column;
+    flex-grow:1;
+}
+
+.successModal{
+    position: absolute;
+    width:20%;
+    text-align: center;
+    background-color: wheat;
+    margin: 20px;
+    padding: 50px;
+    font-size: 25px;
+}

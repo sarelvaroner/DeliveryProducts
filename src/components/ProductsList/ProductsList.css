@@ -1,0 +1,67 @@
+.header{
+    background-color: lightblue;
+    min-height: 50px;
+}
+
+.pageWrapper{
+    margin: 0 3%;
+    width: 100vw;
+}
+
+.ProductsListContainer{
+    display: flex;
+}
+
+.itemsContainer{
+    flex-direction:column ;
+    flex-grow:1;
+}
+
+.controllerContainer{
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.addProductBtn{
+    height: 36px;
+    flex-grow:1;
+    box-shadow: 0 3px #888888;
+    background-color: lightgreen;
+    border: 4px black solid;
+    margin-right: 15px;
+}
+
+
+.searchInput{
+    width: 90%;
+    margin-left: 5px;
+}
+
+.searchInputContainer{
+    flex-grow:1;
+
+}
+.sortByContainer{
+    flex-grow:1;
+}
+
+
+.loadingContainer{
+    position: absolute;
+    top: 32%;
+    color: green;
+}
+
+.loading{
+    position: absolute;
+    right: 50%;
+    margin-top: 10px;
+}
+
+.noDataMsg{
+    font-size: 3rem;
+    color: red;
+    margin-top: 20px;
+
+
+}

@@ -1,0 +1,32 @@
+.ProductContainer{
+    border: 1px black solid;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.ProductImg{
+    margin: 10px;
+    
+}
+
+
+.ProductText{
+    margin-left: 20px;
+}
+
+
+.ProductInfo{
+    display: flex; 
+}
+
+
+.ProductDeleteBtn{
+    height: 36px;
+    width: 86px;
+    box-shadow: 0 3px #888888;
+    background-color: orange;
+    border: 4px black solid;
+    align-self:flex-end;
+    margin: 15px;
+}
