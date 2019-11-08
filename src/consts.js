@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 const PRODUCTS_API_URL = 'https://msbit-exam-products-store.firebaseio.com/deliveryProducts/products.json'
 const PRODUCTS_API_CONFIF = { method: 'GET', headers: { 'Content-Type': 'application/json; charset=UTF-8' } }
+
 
 const SORT_OPTIONS = [
     <option value={'priceStartFromCheap'} key={'1'}>Price - low to high</option>,
@@ -11,9 +13,6 @@ const SORT_OPTIONS = [
     <option value={'nameFromStart'} key={'5'}> Name - A - Z</option>,
     <option value={'nameFromEnd'} key={'6'} >Name - Z - A </option>
 ]
-
-
-
 
 
 export {

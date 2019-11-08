@@ -8,8 +8,8 @@ const Product = ({ viewDetails, item: { name, thumbnailUrl, description, id } })
             <div className="ProductInfo">
                 <img className='ProductImg' src={thumbnailUrl} alt={name} />
                 <div className="ProductText">
-                    <h1 className="productHeader">{name}</h1>
-                    <h2 className="productDescription">{description}</h2>
+                    <div><h1 className="productHeader">{name}</h1></div>
+                    <div className={'productDescriptionContainer'}><h2 className="productDescription">{description}</h2></div>
                 </div>
             </div>
             <button className='ProductDeleteBtn'>Delete</button>

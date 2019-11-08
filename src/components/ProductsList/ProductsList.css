@@ -1,12 +1,20 @@
+.logo{
+    margin-left: 15px;
+}
+
 .header{
     background-color: lightblue;
     min-height: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items:center ;
 }
 
 .pageWrapper{
-    margin: 0 3%;
-    width: 100vw;
+    width: 100%;
 }
+
+
 
 .ProductsListContainer{
     display: flex;
@@ -14,35 +22,39 @@
 
 .itemsContainer{
     flex-direction:column ;
-    flex-grow:1;
+    width: 100%;
 }
 
 .controllerContainer{
     display: flex;
     flex-wrap:wrap;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
 }
 
 .addProductBtn{
     height: 36px;
-    flex-grow:1;
     box-shadow: 0 3px #888888;
     background-color: lightgreen;
     border: 4px black solid;
     margin-right: 15px;
+    width: 130px;
 }
 
 
 .searchInput{
     width: 90%;
     margin-left: 5px;
+    height: 36px;
+    width: 130px;
 }
 
 .searchInputContainer{
-    flex-grow:1;
-
+    margin-left:5px ;
 }
 .sortByContainer{
-    flex-grow:1;
 }
 
 
@@ -65,3 +77,14 @@
 
 
 }
+
+.sortBy{
+    height: 36px;
+    width: 130px;
+}
+
+
+.filterContainer{
+    display: inline-flex;
+}
+

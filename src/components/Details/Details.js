@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import './Details.css';
 
 
-const Details = ({ chosenProduct: { name, description, price, url } }) => {
+const Details = ({ saveChangesHandler, chosenProduct: { name, description, price, url, id } }) => {
 
     const [currentName, setCurrentName] = useState(name);
     const [currentDescription, setCurrentDescription] = useState(description);
@@ -20,6 +20,7 @@ const Details = ({ chosenProduct: { name, description, price, url } }) => {
 
 
     const validateValues = () => {
+        const regex = /^[0-9\b]+$/;
         let disableSaving = false
         let nameWarn = false
         let priceWarn = false
@@ -29,7 +30,7 @@ const Details = ({ chosenProduct: { name, description, price, url } }) => {
             nameWarn = true
         }
 
-        if (parseInt(currentPrice) < 0 || currentPrice.length < 1) {
+        if (currentPrice.length < 1 || !regex.test(currentPrice) || parseInt(currentPrice) < 0) {
             disableSaving = true
             priceWarn = true
         }
@@ -40,10 +41,18 @@ const Details = ({ chosenProduct: { name, description, price, url } }) => {
     }
 
 
+    const saveDetails = () => {
+        let changes = { id, currentName, currentDescription, currentPrice }
+        setShowSuccessModal(!showSuccessModal)
+        saveChangesHandler(changes)
+
+
+    }
+
     return (
         <div className='detailsContainer'>
             {
-                showSuccessModal ?
+                !showSuccessModal ?
                     <Fragment>
                         <img className='detailsImg' src={url} alt={'product'} />
                         <label htmlFor="detailsName">Name</label>
@@ -54,9 +63,9 @@ const Details = ({ chosenProduct: { name, description, price, url } }) => {
                         <label htmlFor="detailsDescription">Description</label>
                         <textarea id='detailsDescription' value={currentDescription} onChange={e => setCurrentDescription(e.target.value)}></textarea >
                         <label htmlFor="detailsPrice">Price</label>
-                        <textarea id='detailsPrice' value={currentPrice} onChange={e => setCurrentPrice(e.target.value)}></textarea >
+                        <textarea type="number" id='detailsPrice' value={currentPrice} onChange={e => setCurrentPrice(e.target.value)} ></textarea >
                         {priceWarning && <h5 className={'warning'}>Price must be a positive number</h5>}
-                        <button className='detailsSaveBtn' onClick={() => setShowSuccessModal(!showSuccessModal)} disabled={disabledSave}>Save</button>
+                        <button className='detailsSaveBtn' onClick={(e) => saveDetails()} disabled={disabledSave}>Save</button>
                     </Fragment>
                     :
                     <div className='successModal' onClick={() => setShowSuccessModal(!showSuccessModal)}>

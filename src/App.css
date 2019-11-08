@@ -1,6 +1,4 @@
-.logo{
-    font-size: 3rem;
-    font-weight: bold;
-    padding: 13px;
-    margin-left: 20px;
+.App{
+    min-width: 400px;
+    padding: 10px;
 }

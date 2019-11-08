@@ -1,7 +1,11 @@
 .ProductContainer{
     border: 1px black solid;
-    display: flex;
+    display: block;
     justify-content: space-between;
+    height: 170px;
+    padding: 5px;
+    position: relative;
+
 }
 
 
@@ -13,15 +17,32 @@
 
 .ProductText{
     margin-left: 20px;
+    height: calc( 100% - 62px );
+    width: calc( 100% - 200px);
+
 }
 
 
 .ProductInfo{
-    display: flex; 
+    display: flex;
+    width: 100%;
+    height: 100%; 
 }
 
+.productDescription{
+    line-height: 22px;
+}
+
+.productDescriptionContainer{
+    max-height: 66px;
+    overflow-y: scroll;
+
+}
 
 .ProductDeleteBtn{
+    position: absolute;
+    right: 0;
+    bottom: 0;
     height: 36px;
     width: 86px;
     box-shadow: 0 3px #888888;
