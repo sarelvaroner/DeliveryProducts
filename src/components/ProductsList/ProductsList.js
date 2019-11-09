@@ -6,6 +6,7 @@ import './ProductsList.css';
 import { PRODUCTS_API_URL, PRODUCTS_API_CONFIF, SORT_OPTIONS } from '../../consts'
 import Product from '../Product/Product'
 import Details from '../Details/Details'
+import Modal from '../Modal/Modal'
 // import Pagination from '../Pagination/Pagination'
 import { extractData, choosecompareFunction, findSubStr } from '../../utils'
 
@@ -21,6 +22,8 @@ const ProductsList = () => {
   const [noProducts, setNoProducts] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const productPerPage = 5
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +34,6 @@ const ProductsList = () => {
         setRawData(json)
         let newData = extractData(json)
         if (newData.length === 0) setNoProducts(true)
-        // if(0 === 0) setNoProducts(true)
         setFetchingItems(newData)
       }
       catch (error) { setNoProducts(true) }
@@ -64,6 +66,13 @@ const ProductsList = () => {
   }
 
 
+  const sucssesHandler =()=>{
+    setShowSuccessModal(false)
+    setChosenProduct(null)
+
+}
+
+
   const saveChangesHandler = ({ id, currentName, currentDescription, currentPrice }) => {
 
     let copy = cloneDeep(fetchingItems)
@@ -73,6 +82,8 @@ const ProductsList = () => {
     copy[index] = newItem
 
     setFetchingItems(copy)
+    setShowSuccessModal(!showSuccessModal)
+
   }
 
 
@@ -119,12 +130,12 @@ const ProductsList = () => {
 
 
           }
-          {chosenProduct && <Details chosenProduct={chosenProduct} saveChangesHandler={(item) => saveChangesHandler(item)} />}
+          {chosenProduct && <Details chosenProduct={chosenProduct} saveChangesHandler={(item) => saveChangesHandler(item)} sucssesHandler={()=> sucssesHandler()}/>}
         </div>
 
       </div>
       {/* <Pagination perPage={productPerPage} pagingHandler={()=> true}/> */}
-
+      {showSuccessModal &&<Modal sucssesHandler ={()=>sucssesHandler()} name={chosenProduct.name}/>}
     </Fragment>
   );
 }

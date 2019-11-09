@@ -7,7 +7,6 @@ const Details = ({ saveChangesHandler, chosenProduct: { name, description, price
     const [currentName, setCurrentName] = useState(name);
     const [currentDescription, setCurrentDescription] = useState(description);
     const [currentPrice, setCurrentPrice] = useState(price);
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [disabledSave, setDisabledSave] = useState(false);
     const [priceWarning, setPriceWarning] = useState(false);
     const [NameWarning, setNameWarning] = useState(false);
@@ -41,20 +40,21 @@ const Details = ({ saveChangesHandler, chosenProduct: { name, description, price
     }
 
 
+
     const saveDetails = () => {
         let changes = { id, currentName, currentDescription, currentPrice }
-        setShowSuccessModal(!showSuccessModal)
         saveChangesHandler(changes)
-
-
     }
 
     return (
         <div className='detailsContainer'>
             {
-                !showSuccessModal ?
-                    <Fragment>
+                <Fragment>
+                    <div className={'detailsImgContainer'}>
                         <img className='detailsImg' src={url} alt={'product'} />
+                    </div>
+                    <div className={'detailsTextContainer'}>
+
                         <label htmlFor="detailsName">Name</label>
                         <textarea id='detailsName' value={currentName} onChange={e => setCurrentName(e.target.value)}></textarea >
                         {
@@ -66,11 +66,10 @@ const Details = ({ saveChangesHandler, chosenProduct: { name, description, price
                         <textarea type="number" id='detailsPrice' value={currentPrice} onChange={e => setCurrentPrice(e.target.value)} ></textarea >
                         {priceWarning && <h5 className={'warning'}>Price must be a positive number</h5>}
                         <button className='detailsSaveBtn' onClick={(e) => saveDetails()} disabled={disabledSave}>Save</button>
-                    </Fragment>
-                    :
-                    <div className='successModal' onClick={() => setShowSuccessModal(!showSuccessModal)}>
-                        {`Thank you for updating product ${currentName}`}
                     </div>
+                </Fragment>
+
+
             }
         </div>
     );
