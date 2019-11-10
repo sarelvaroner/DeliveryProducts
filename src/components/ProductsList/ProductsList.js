@@ -7,12 +7,11 @@ import { PRODUCTS_API_URL, PRODUCTS_API_CONFIF, SORT_OPTIONS } from '../../const
 import Product from '../Product/Product'
 import Details from '../Details/Details'
 import Modal from '../Modal/Modal'
-// import Pagination from '../Pagination/Pagination'
+import Pagination from '../Pagination/Pagination'
 import { extractData, choosecompareFunction, findSubStr } from '../../utils'
 
 
 const ProductsList = () => {
-  const [rawData, setRawData] = useState([])
   const [fetchingItems, setFetchingItems] = useState([])
   const [products, setProducts] = useState([])
   const [chosenProduct, setChosenProduct] = useState(null)
@@ -31,7 +30,6 @@ const ProductsList = () => {
       try {
         const response = await fetch(PRODUCTS_API_URL, PRODUCTS_API_CONFIF)
         let json = await response.json()
-        setRawData(json)
         let newData = extractData(json)
         if (newData.length === 0) setNoProducts(true)
         setFetchingItems(newData)
@@ -42,35 +40,26 @@ const ProductsList = () => {
     fetchData()
   }, []);
 
-  useEffect(() => { productsManager() }, [searchText, fetchingItems, sortBy])
+  useEffect(() => { setProducts(productsManager()) }, [searchText, fetchingItems, sortBy, currentPage])
 
 
   const productsManager = () => {
-    let searchResult
-    if (searchText.length === 0) searchResult = fetchingItems
-    else searchResult = fetchingItems.filter(item => findSubStr(item, searchText))
+    const sortFunc = choosecompareFunction(sortBy)
+    const result = cloneDeep(fetchingItems)
 
-    let sortFunc = choosecompareFunction(sortBy)
-    let sortResult = cloneDeep(searchResult).sort(sortFunc)
-
-    setProducts(sortResult.slice(0, 5))
+    if (searchText.length !== 0) result = result.filter(item => findSubStr(item, searchText))
+    return result.sort(sortFunc).slice((currentPage - 1) * productPerPage, (currentPage * productPerPage))
   }
 
 
-  const pagingItems = () => {
 
 
 
-
-
-  }
-
-
-  const sucssesHandler =()=>{
+  const sucssesHandler = () => {
     setShowSuccessModal(false)
     setChosenProduct(null)
 
-}
+  }
 
 
   const saveChangesHandler = ({ id, currentName, currentDescription, currentPrice }) => {
@@ -116,7 +105,7 @@ const ProductsList = () => {
                 :
                 <div className='itemsContainer'>
                   {
-                    products && products.map(item => {
+                    products.length > 0 && products.map(item => {
                       return <Product
                         item={item}
                         key={item.id}
@@ -130,12 +119,24 @@ const ProductsList = () => {
 
 
           }
-          {chosenProduct && <Details chosenProduct={chosenProduct} saveChangesHandler={(item) => saveChangesHandler(item)} sucssesHandler={()=> sucssesHandler()}/>}
+          {
+            chosenProduct && <Details
+              chosenProduct={chosenProduct}
+              saveChangesHandler={(item) => saveChangesHandler(item)}
+              sucssesHandler={() => sucssesHandler()} />
+          }
         </div>
 
       </div>
-      {/* <Pagination perPage={productPerPage} pagingHandler={()=> true}/> */}
-      {showSuccessModal &&<Modal sucssesHandler ={()=>sucssesHandler()} name={chosenProduct.name}/>}
+      {
+        fetchingItems.length > 0 &&
+        <Pagination
+          totalProducts={fetchingItems.length}
+          perPage={productPerPage}
+          correntpageHandler={(value) => setCurrentPage(value)} />
+      }
+
+      {showSuccessModal && <Modal sucssesHandler={() => sucssesHandler()} name={chosenProduct.name} />}
     </Fragment>
   );
 }
