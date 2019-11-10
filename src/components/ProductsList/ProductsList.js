@@ -46,7 +46,7 @@ const ProductsList = () => {
 
   const productsManager = () => {
     const sortFunc = choosecompareFunction(sortBy)
-    const result = cloneDeep(fetchingItems)
+    let result = cloneDeep(fetchingItems)
 
     if (searchText.length !== 0) result = result.filter(item => findSubStr(item, searchText))
     return result.sort(sortFunc).slice((currentPage - 1) * productPerPage, (currentPage * productPerPage))
