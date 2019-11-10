@@ -6,89 +6,78 @@
         flex-direction: column;
         padding: 20px;
         margin-left: 5px;
-        min-width: 400px;
-
-    
+        min-width: 400px;   
     }
     
-  }
+}
   
   
 @media only screen and (max-width: 1000px) {
-    .detailsContainer {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        padding: 20px;
-        margin-top:5px;
-        order: 1;
-        min-width: 400px;
-
-
-    }
-
-   
-
+  .detailsContainer {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 20px;
+    margin-top:5px;
+    order: 1;
+    min-width: 400px;
   }
-
-  
-  .detailsImg{
-    width: 100%;
 }
 
-  .detailsImgContainer{
-    max-width: 150px;
-
-    }
   
-  .detailsTextContainer{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-  
-
-  .detailsTextContainer textarea{
-
+.detailsImg{
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid black;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+}
+.detailsImgContainer{
+  max-width: 150px;
 
-  .detailsTextContainer label{
-    margin-top: 10px;
-    font-weight: bold;
-  }
+}
+  
+.detailsTextContainer{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+  
 
- #detailsPrice{
-    width: 20%;
-    min-width: 100px;
-    padding: 8px 20px;
-    text-align: center;
+.detailsTextContainer textarea{
 
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
-  }
+.detailsTextContainer label{
+  margin-top: 10px;
+  font-weight: bold;
+}
 
-  .warning{
-    color: red;
-  }
-
-
-  .detailsSaveBtn{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    border: black 2px solid;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: black;
-    width: 70px ;
-    height: 30px;
-    /* padding-bottom: 5px; */
+#detailsPrice{
+  width: 20%;
+  min-width: 100px;
+  padding: 8px 20px;
+  text-align: center;
 
 
-  }
+}
+
+.warning{
+  color: red;
+}
+
+
+.detailsSaveBtn{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: black 2px solid;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: black;
+  width: 70px ;
+  height: 30px;
+}

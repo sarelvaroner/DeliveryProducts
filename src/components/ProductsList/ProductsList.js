@@ -40,6 +40,7 @@ const ProductsList = () => {
     fetchData()
   }, []);
 
+  
   useEffect(() => { setProducts(productsManager()) }, [searchText, fetchingItems, sortBy, currentPage])
 
 
@@ -59,7 +60,7 @@ const ProductsList = () => {
 
 
   const saveChangesHandler = ({ id, currentName, currentDescription, currentPrice }) => {
-    
+
     let copy = cloneDeep(fetchingItems)
     let index = copy.findIndex((item) => { return item.id === id })
     let { ...newItem } = { ...copy[index], price: currentPrice, description: currentDescription, name: currentName }

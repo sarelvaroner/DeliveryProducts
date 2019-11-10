@@ -54,12 +54,9 @@ const Details = ({ saveChangesHandler, chosenProduct: { name, description, price
                         <img className='detailsImg' src={url} alt={'product'} />
                     </div>
                     <div className={'detailsTextContainer'}>
-
                         <label htmlFor="detailsName">Name</label>
                         <textarea id='detailsName' value={currentName} onChange={e => setCurrentName(e.target.value)}></textarea >
-                        {
-                            NameWarning && <h5 className={'warning'}>Product must have a name</h5>
-                        }
+                        {NameWarning && <h5 className={'warning'}>Product must have a name</h5>}
                         <label htmlFor="detailsDescription">Description</label>
                         <textarea id='detailsDescription' value={currentDescription} onChange={e => setCurrentDescription(e.target.value)}></textarea >
                         <label htmlFor="detailsPrice">Price</label>
