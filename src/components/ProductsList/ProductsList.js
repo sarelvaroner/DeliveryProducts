@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import cloneDeep from 'lodash/cloneDeep';
-
 import 'react-fontawesome';
 import './ProductsList.css';
 import { PRODUCTS_API_URL, PRODUCTS_API_CONFIF, SORT_OPTIONS } from '../../consts'
@@ -22,6 +21,7 @@ const ProductsList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const productPerPage = 5
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [modalName, setModalName] = useState('');
 
 
   useEffect(() => {
@@ -52,27 +52,22 @@ const ProductsList = () => {
   }
 
 
-
-
-
   const sucssesHandler = () => {
     setShowSuccessModal(false)
     setChosenProduct(null)
-
   }
 
 
   const saveChangesHandler = ({ id, currentName, currentDescription, currentPrice }) => {
-
+    
     let copy = cloneDeep(fetchingItems)
     let index = copy.findIndex((item) => { return item.id === id })
     let { ...newItem } = { ...copy[index], price: currentPrice, description: currentDescription, name: currentName }
 
     copy[index] = newItem
-
+    setModalName(currentName)
     setFetchingItems(copy)
     setShowSuccessModal(!showSuccessModal)
-
   }
 
 
@@ -92,7 +87,6 @@ const ProductsList = () => {
           </div>
         </div>
         <div className="ProductsListContainer">
-
           {
             loading ?
               <div className={'loadingContainer'}>
@@ -113,11 +107,7 @@ const ProductsList = () => {
                       />
                     })
                   }
-
-
                 </div>
-
-
           }
           {
             chosenProduct && <Details
@@ -126,7 +116,6 @@ const ProductsList = () => {
               sucssesHandler={() => sucssesHandler()} />
           }
         </div>
-
       </div>
       {
         fetchingItems.length > 0 &&
@@ -135,8 +124,7 @@ const ProductsList = () => {
           perPage={productPerPage}
           correntpageHandler={(value) => setCurrentPage(value)} />
       }
-
-      {showSuccessModal && <Modal sucssesHandler={() => sucssesHandler()} name={chosenProduct.name} />}
+      {showSuccessModal && <Modal sucssesHandler={() => sucssesHandler()} name={modalName} />}
     </Fragment>
   );
 }

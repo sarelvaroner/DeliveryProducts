@@ -1,10 +1,12 @@
 import React from 'react';
 import './Product.css';
+import Tilt from 'react-vanilla-tilt'
+
 
 const Product = ({ viewDetails, item: { name, thumbnailUrl, description, id } }) => {
 
     return (
-        <div className="ProductContainer" onClick={() => viewDetails(id)}>
+        <div className="ProductContainer"  onClick={() => viewDetails(id)}>
             <div className="ProductInfo">
                 <img className='ProductImg' src={thumbnailUrl} alt={name} />
                 <div className="ProductText">
