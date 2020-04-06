@@ -13,5 +13,5 @@ const App = () => {
     </div>
   );
 }
-
+console.log('check')
 export default App;
